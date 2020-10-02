@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "PickUpCounter", "PickUpCounter\PickUpCounter.njsproj", "{D88EDDF1-E964-4FC6-B8B5-F3D1945EA902}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D88EDDF1-E964-4FC6-B8B5-F3D1945EA902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D88EDDF1-E964-4FC6-B8B5-F3D1945EA902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D88EDDF1-E964-4FC6-B8B5-F3D1945EA902}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D88EDDF1-E964-4FC6-B8B5-F3D1945EA902}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B9DAE49-2645-4AF0-8902-82B1A31D228A}
+	EndGlobalSection
+EndGlobal
