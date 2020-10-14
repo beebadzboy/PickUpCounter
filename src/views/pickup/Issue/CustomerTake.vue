@@ -31,8 +31,10 @@
               <CCol sm="8">
                 <CInput label="Recipient information detail" readonly="true" />
               </CCol>
-              <CCol sm="2">
-                <CButton block color="primary" class="mt-4">Recipient information (F8)</CButton>
+              <CCol sm="2" md="2" class="mb-3 mb-xl-0">
+                <CButton block color="primary" 
+                  >Recipient information (F8)</CButton
+                >
               </CCol>
             </CRow>
           </CCardBody>
@@ -42,9 +44,17 @@
         <CCardHeader>
           <strong>Packing Detail </strong>
         </CCardHeader>
-        <CCardBody> </CCardBody>
+        <CCardBody></CCardBody>
       </CCol>
     </CRow>
+    <CButtonGroup
+      class="align-items-center mb-2 col-md-4 order-md-2 offset-lg-8"
+      size="sm"
+    >
+      <CButton color="success">Save (F11)</CButton>
+      <CButton color="danger">Clear (F3)</CButton>
+      <CButton color="warning">Print (F7)</CButton>
+    </CButtonGroup>
   </div>
 </template>
 

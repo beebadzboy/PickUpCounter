@@ -31,10 +31,10 @@ export default [
           name: 'Customer Take',
           to: '/pickup/issue/ctake'
         },
-        {
-          name: 'Edit Customer Take',
-          to: '/pickup/issue/editctake'
-        },
+        // {
+        //   name: 'Edit Customer Take',
+        //   to: '/pickup/issue/editctake'
+        // },
         {
           name: 'Return & Refund & Resale',
           to: '/pickup/issue/resale'
