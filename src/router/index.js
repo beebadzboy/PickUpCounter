@@ -57,6 +57,26 @@ const Register = () => import('@/views/pages/Register')
 const Users = () => import('@/views/users/Users')
 const User = () => import('@/views/users/User')
 
+// Pickup
+const Receive = () => import('@/views/pickup/Receive')
+const CancelIssue = () => import('@/views/pickup/CancelIssue')
+const Transfer = () => import('@/views/pickup/Transfer')
+const Refund = () => import('@/views/pickup/Refund')
+
+// Issue
+const CTake = () => import('@/views/pickup/Issue/CustomerTake')
+const EditCTake = () => import('@/views/pickup/Issue/EditCustomerTake')
+const Resale = () => import('@/views/pickup/Issue/ReSale')
+
+// Report
+const Doc63 = () => import('@/views/Dashboard')
+const DocDutyFree = () => import('@/views/Dashboard')
+const Doc62_1 = () => import('@/views/Dashboard')
+const EndOfDay = () => import('@/views/Dashboard')
+const SaleStatus = () => import('@/views/Dashboard')
+const RefundReport = () => import('@/views/Dashboard')
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -66,7 +86,7 @@ export default new Router({
   routes: configRoutes()
 })
 
-function configRoutes () {
+function configRoutes() {
   return [
     {
       path: '/',
@@ -80,11 +100,56 @@ function configRoutes () {
           component: Dashboard
         },
         {
+          path: 'pickup',
+          redirect: '/pickup/receive',
+          name: 'Pickup Counter',
+          component: {
+            render(c) { return c('router-view') }
+          },
+          children: [{
+            path: 'receive',
+            name: 'Receive',
+            component: Receive
+          }, {
+            path: 'issue',
+            redirect: '/pickup/issue/ctake',
+            name: 'Issue',
+            component: {
+              render(c) { return c('router-view') }
+            },
+            children: [{
+              path: 'ctake',
+              name: 'Customer Take',
+              component: CTake
+            }, {
+              path: 'editctake',
+              name: 'Edit Customer Take',
+              component: EditCTake
+            }, {
+              path: 'resale',
+              name: 'Return & Refund & Resale',
+              component: Resale
+            }]
+          }, {
+            path: 'cancelissue',
+            name: 'Cancel Issue',
+            component: CancelIssue
+          }, {
+            path: 'transfer',
+            name: 'Transfer',
+            component: Transfer
+          }, {
+            path: 'refund',
+            name: 'Refund',
+            component: Refund
+          }]
+        },
+        {
           path: 'theme',
           redirect: '/theme/colors',
           name: 'Theme',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -140,7 +205,7 @@ function configRoutes () {
           redirect: '/base/cards',
           name: 'Base',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -230,7 +295,7 @@ function configRoutes () {
           redirect: '/buttons/standard-buttons',
           name: 'Buttons',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -260,7 +325,7 @@ function configRoutes () {
           redirect: '/icons/coreui-icons',
           name: 'CoreUI Icons',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -285,7 +350,7 @@ function configRoutes () {
           redirect: '/notifications/alerts',
           name: 'Notifications',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -312,7 +377,7 @@ function configRoutes () {
       redirect: '/pages/404',
       name: 'Pages',
       component: {
-        render (c) { return c('router-view') }
+        render(c) { return c('router-view') }
       },
       children: [
         {
