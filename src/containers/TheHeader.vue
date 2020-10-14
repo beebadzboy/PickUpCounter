@@ -1,5 +1,5 @@
 <template>
-  <CHeader fixed with-subheader light>
+  <CHeader fixed with-subheader light class="bar-top">
     <CToggler
       in-header
       class="ml-3 d-lg-none"

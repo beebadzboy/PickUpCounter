@@ -18,7 +18,7 @@
         name="logo"
         size="custom-size"
         :height="35"
-        viewBox="0 0 110 134"
+        viewBox="0 0 200 200"
       />
     </CSidebarBrand>
 
