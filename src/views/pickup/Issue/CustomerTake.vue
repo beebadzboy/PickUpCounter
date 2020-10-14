@@ -31,9 +31,9 @@
               <CCol sm="8">
                 <CInput label="Recipient information detail" readonly="true" />
               </CCol>
-              <CCol sm="2" md="2" class="mb-3 mb-xl-0">
-                <CButton block color="primary" 
-                  >Recipient information (F8)</CButton
+              <CCol sm="2" style="padding-top: 5px">
+                <CButton block color="primary" class="mt-4"
+                  >Recipient (F8)</CButton
                 >
               </CCol>
             </CRow>
