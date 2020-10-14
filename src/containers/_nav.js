@@ -19,12 +19,13 @@ export default [
       {
         _name: 'CSidebarNavItem',
         name: 'Receive',
+        to: '/pickup/receive',
         icon: 'cil-car-alt'
       },
       {
         _name: 'CSidebarNavDropdown',
         name: 'Issue',
-        to: '/pickup/issue',
+        to: '/pickup/issue/ctake',
         icon: 'cil-grid',
         items: [{
           name: 'Customer Take',

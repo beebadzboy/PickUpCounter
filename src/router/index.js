@@ -101,8 +101,7 @@ function configRoutes() {
         },
         {
           path: 'pickup',
-          // redirect: '/pickup/receive',
-
+          redirect: '/pickup/receive',
           name: 'Pickup Counter',
           component: {
             render(c) { return c('router-view') }
@@ -113,7 +112,11 @@ function configRoutes() {
             component: Receive
           }, {
             path: 'issue',
+            redirect: '/pickup/issue/ctake',
             name: 'Issue',
+            component: {
+              render(c) { return c('router-view') }
+            },
             children: [{
               path: 'ctake',
               name: 'Customer Take',
