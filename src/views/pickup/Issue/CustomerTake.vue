@@ -41,27 +41,70 @@
         </CCard>
       </CCol>
       <CCol sm="12">
-        <CCardHeader>
-          <strong>Packing Detail </strong>
-        </CCardHeader>
-        <CCardBody></CCardBody>
+        <CCard accent-color="info" v-if="show">
+          <CCardHeader>
+            <strong>Packing Detail </strong>
+            <div class="card-header-actions">
+              <CLink
+                class="card-header-action btn-minimize"
+                @click="isCollapsed = !isCollapsed"
+              >
+                <CIcon
+                  :name="`cil-chevron-${isCollapsed ? 'bottom' : 'top'}`"
+                />
+              </CLink>
+            </div>
+          </CCardHeader>
+          <CRow>
+            <CCol lg="6">
+              <CTableWrapper :items="getShuffledUsersData()">
+                <template #header>
+                  <CIcon name="cil-grid" /> Simple Table
+                  <div class="card-header-actions">
+                    <a
+                      href="https://coreui.io/vue/docs/components/nav"
+                      class="card-header-action"
+                      rel="noreferrer noopener"
+                      target="_blank"
+                    >
+                      <small class="text-muted">docs</small>
+                    </a>
+                  </div>
+                </template>
+              </CTableWrapper>
+            </CCol>
+
+            <CCol lg="6">
+              <CTableWrapper
+                :items="getShuffledUsersData()"
+                striped
+                caption="Striped Table"
+              />
+            </CCol>
+          </CRow>
+
+          <CRow>
+            <CCol lg="6">
+              <CTableWrapper
+                :items="getShuffledUsersData()"
+                small
+                caption="Condensed Table"
+              />
+            </CCol>
+
+            <CCol lg="6">
+              <CTableWrapper
+                :items="getShuffledUsersData()"
+                fixed
+                border
+                caption="Bordered Table"
+              />
+            </CCol>
+          </CRow>
+        </CCard>
       </CCol>
     </CRow>
-    <CCardBody>
-        <CDataTable
-          :items="dateFilteredItems"
-          :fields="fields"
-          sorter
-          column-filter
-          hover
-        >
-          <template #registeredTimestamp="{ item }">
-            <td>
-              {{ item.registeredDate }}
-            </td>
-          </template>
-        </CDataTable>
-      </CCardBody>
+
     <CButtonGroup
       class="align-items-center mb-2 col-md-4 order-md-2 offset-lg-8"
       size="sm"
@@ -74,19 +117,16 @@
 </template>
 
 <script>
-const items = [
-  { username: 'Samppa Nori', registered: { date: '2012/01/01', timestamp: 1325376000000 }, role: 'Member', status: 'Active'},
-  { username: 'Estavan Lykos', registered: { date: '2012/02/01', timestamp: 1328054400000 }, role: 'Staff', status: 'Banned'},
-  { username: 'Chetan Mohamed', registered: { date: '2012/02/01', timestamp: 1328054400000 }, role: 'Admin', status: 'Inactive'},
-  { username: 'Derick Maximinus', registered: { date: '2012/03/01', timestamp: 1330560000000 }, role: 'Member', status: 'Pending'},
-  { username: 'Friderik Dávid', registered: { date: '2012/01/21', timestamp: 1327104000000 }, role: 'Staff', status: 'Active'},
-];
+import CTableWrapper from '../../base/Table.vue'
+import usersData from '../../users/UsersData'
 
 export default {
-  name: "Customer Take",
+  name: "CustomerTake",
+  components: { CTableWrapper },
   data() {
     return {
-      selected: [], // Must be an array reference!
+      details: [],
+      collapseDuration: 0,
       show: true,
       horizontal: { label: "col-3", input: "col-9" },
       options: ["Option 1", "Option 2", "Option 3"],
@@ -113,33 +153,23 @@ export default {
         "Inline Radios",
         "Radios - custom",
         "Inline Radios - custom",
-      ],
-      items,
-      startDate: 1325376000000,
-      endDate: 1330560000000
+      ], 
     };
   },
   methods: {
     validator(val) {
       return val ? val.length >= 4 : false;
-    },
-  },
-  computed: {
-    computedItems () {
-      return items.map(item => {
-        return {  
-          item, 
-          registeredTimestamp: item.registered.timestamp, 
-          registeredDate: item.registered.date 
-        }
-      })
-    },
-    dateFilteredItems() {
-      return this.computedItems.filter(item => {
-        const date = item.registeredTimestamp
-        return date >= this.startDate && date <= this.endDate
-      })
+    },shuffleArray (array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1))
+        let temp = array[i]
+        array[i] = array[j]
+        array[j] = temp
+      }
+      return array
+    },getShuffledUsersData () {
+      return this.shuffleArray(usersData.slice(0))
     }
-  },
+  }, 
 };
 </script>
