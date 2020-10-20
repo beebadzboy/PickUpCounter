@@ -61,12 +61,11 @@
       </CCol>
       <CCol sm="12">
         <CCard accent-color="info" v-if="show">
-          <CCardHeader>
+          <CCardHeader @click="isCollapsed = !isCollapsed">
             <strong>Packing Detail </strong>
             <div class="card-header-actions">
               <CLink
                 class="card-header-action btn-minimize"
-                @click="isCollapsed = !isCollapsed"
               >
                 <CIcon
                   :name="`cil-chevron-${isCollapsed ? 'bottom' : 'top'}`"
@@ -301,8 +300,8 @@ const items = [
     status: "Pending",
   },
 ];
- 
-//  sgbthbhtbgt
+
+
 const fields = [
   { key: "issusNo", _style: "min-width:150px" },
   { key: "orderNo", _style: "min-width:150px" },
