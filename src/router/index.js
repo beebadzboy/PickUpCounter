@@ -69,12 +69,12 @@ const EditCTake = () => import('@/views/pickup/Issue/EditCustomerTake')
 const Resale = () => import('@/views/pickup/Issue/ReSale')
 
 // Report
-const Doc63 = () => import('@/views/Dashboard')
-const DocDutyFree = () => import('@/views/Dashboard')
-const Doc62_1 = () => import('@/views/Dashboard')
-const EndOfDay = () => import('@/views/Dashboard')
-const SaleStatus = () => import('@/views/Dashboard')
-const RefundReport = () => import('@/views/Dashboard')
+// const Doc63 = () => import('@/views/Dashboard')
+// const DocDutyFree = () => import('@/views/Dashboard')
+// const Doc62_1 = () => import('@/views/Dashboard')
+// const EndOfDay = () => import('@/views/Dashboard')
+// const SaleStatus = () => import('@/views/Dashboard')
+// const RefundReport = () => import('@/views/Dashboard')
 
 
 Vue.use(Router)

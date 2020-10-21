@@ -1,7 +1,7 @@
 <template>
   <div>
     <CRow>
-      <CCol sm="12">
+      <CCol col="6" sm="6">
         <CCard accent-color="info">
           <CCardHeader>
             <strong>Information </strong>
@@ -10,119 +10,190 @@
             <CRow>
               <CCol sm="4">
                 <CInput
-                  label="Shopping card / Pack no. / Member Card"
+                  label="Lot"
                   placeholder="enter your card number"
                   block
                   size="sm"
                 />
-              </CCol>
-            </CRow>
-            <CRow>
-              <CCol sm="2">
-                <CInput
-                  label="Customer's name"
-                  readonly="true"
-                  block
-                  size="sm"
-                />
-              </CCol>
-              <CCol sm="8">
-                <CInput
-                  label="Recipient information detail"
-                  readonly="true"
-                  block
-                  size="sm"
-                />
-              </CCol>
+              </CCol> 
               <CCol sm="2" style="padding-top: 12px">
-                <CButton block size="sm" color="primary-50" class="mt-4"
-                  >Recipient (F8)</CButton>
-              </CCol>
+              <CButton block size="sm" color="gradient-danger" class="mt-4"
+                >Recipient (F8)</CButton
+              >
+            </CCol>
             </CRow>
+          </CCardBody>
+          <CCardBody style="padding: 15px">
+            <CCol sm="12">
+              <CCard accent-color="info" v-if="show">
+                <CCardHeader @click="isCollapsed = !isCollapsed">
+                  <strong>Packing Detail </strong>
+                  <div class="card-header-actions">
+                    <CLink class="card-header-action btn-minimize">
+                      <CIcon
+                        :name="`cil-chevron-${isCollapsed ? 'bottom' : 'top'}`"
+                      />
+                    </CLink>
+                  </div>
+                </CCardHeader>
+                <CCollapse :show="isCollapsed" :duration="400">
+                  <CCardBody>
+                    <CDataTable
+                      :items="items"
+                      :fields="fields"
+                      :items-per-page="5"
+                      :border="true"
+                      hover
+                      pagination
+                    >
+                      <template #status="{ item }">
+                        <td>
+                          <CBadge :color="getBadge(item.status)">
+                            {{ item.status }}
+                          </CBadge>
+                        </td>
+                      </template>
+                      <template #show_details="{ item, index }">
+                        <td class="py-2">
+                          <CButton
+                            color="primary"
+                            variant="outline"
+                            square
+                            size="sm"
+                            @click="toggleDetails(item, index)"
+                          >
+                            {{ Boolean(item._toggled) ? "Hide" : "Show" }}
+                          </CButton>
+                        </td>
+                      </template>
+                      <template #details="{ item }">
+                        <CCollapse
+                          :show="Boolean(item._toggled)"
+                          :duration="collapseDuration"
+                        >
+                          <CCardBody>
+                            <CMedia :aside-image-props="{ height: 102 }">
+                              <h4>
+                                {{ item.username }}
+                              </h4>
+                              <p class="text-muted">
+                                User since: {{ item.registered }}
+                              </p>
+                              <CButton size="sm" color="info" class="">
+                                User Settings
+                              </CButton>
+                              <CButton size="sm" color="danger" class="ml-1">
+                                Delete
+                              </CButton>
+                            </CMedia>
+                          </CCardBody>
+                        </CCollapse>
+                      </template>
+                    </CDataTable>
+                  </CCardBody>
+                </CCollapse>
+              </CCard>
+            </CCol>
           </CCardBody>
         </CCard>
       </CCol>
-      <CCol sm="12">
-        <CCard accent-color="info" v-if="show">
-          <CCardHeader @click="isCollapsed = !isCollapsed">
-            <strong>Packing Detail </strong>
-            <div class="card-header-actions">
-              <CLink
-                class="card-header-action btn-minimize"
-              >
-                <CIcon
-                  :name="`cil-chevron-${isCollapsed ? 'bottom' : 'top'}`"
-                />
-              </CLink>
-            </div>
+      <CCol col="6" sm="6">
+        <CCard accent-color="info">
+          <CCardHeader>
+            <strong>Information </strong>
           </CCardHeader>
-          <CCollapse :show="isCollapsed" :duration="400">
-            <CCardBody>
-              <CDataTable
-                :items="items"
-                :fields="fields"
-                :items-per-page="5"
-                :border="true"
-                hover
-                pagination
+          <CCardBody style="padding: 15px">
+            <CRow>
+              <CCol sm="4">
+                <CInput
+                  label="Lot"
+                  placeholder="enter your card number"
+                  block
+                  size="sm"
+                />
+              </CCol> 
+              <CCol sm="2" style="padding-top: 12px">
+              <CButton block size="sm" color="gradient-danger" class="mt-4"
+                >Recipient (F8)</CButton
               >
-                <template #status="{ item }">
-                  <td>
-                    <CBadge :color="getBadge(item.status)">
-                      {{ item.status }}
-                    </CBadge>
-                  </td>
-                </template>
-                <template #show_details="{ item, index }">
-                  <td class="py-2">
-                    <CButton
-                      color="primary"
-                      variant="outline"
-                      square
-                      size="sm"
-                      @click="toggleDetails(item, index)"
+            </CCol>
+            </CRow>
+          </CCardBody>
+          <CCardBody style="padding: 15px">
+            <CCol sm="12">
+              <CCard accent-color="info" v-if="show">
+                <CCardHeader @click="isCollapsed1 = !isCollapsed1">
+                  <strong>Packing Detail </strong>
+                  <div class="card-header-actions">
+                    <CLink class="card-header-action btn-minimize">
+                      <CIcon :bg-color="`#fefefe`"
+                        :name="`cil-chevron-${isCollapsed1 ? 'bottom' : 'top'}`"
+                      />
+                    </CLink>
+                  </div>
+                </CCardHeader>
+                <CCollapse :show="isCollapsed1" :duration="400">
+                  <CCardBody>
+                    <CDataTable
+                      :items="items"
+                      :fields="fields"
+                      :items-per-page="5"
+                      :border="true"
+                      hover
+                      pagination
                     >
-                      {{ Boolean(item._toggled) ? "Hide" : "Show" }}
-                    </CButton>
-                  </td>
-                </template>
-                <template #details="{ item }">
-                  <CCollapse
-                    :show="Boolean(item._toggled)"
-                    :duration="collapseDuration"
-                  >
-                    <CCardBody>
-                      <CMedia :aside-image-props="{ height: 102 }">
-                        <h4>
-                          {{ item.username }}
-                        </h4>
-                        <p class="text-muted">
-                          User since: {{ item.registered }}
-                        </p>
-                        <CButton size="sm" color="info" class="">
-                          User Settings
-                        </CButton>
-                        <CButton size="sm" color="danger" class="ml-1">
-                          Delete
-                        </CButton>
-                      </CMedia>
-                    </CCardBody>
-                  </CCollapse>
-                </template>
-              </CDataTable>
-            </CCardBody>
-          </CCollapse>
+                      <template #status="{ item }">
+                        <td>
+                          <CBadge :color="getBadge(item.status)">
+                            {{ item.status }}
+                          </CBadge>
+                        </td>
+                      </template>
+                      <template #show_details="{ item, index }">
+                        <td class="py-2">
+                          <CButton
+                            color="primary"
+                            variant="outline"
+                            square
+                            size="sm"
+                            @click="toggleDetails(item, index)"
+                          >
+                            {{ Boolean(item._toggled) ? "Hide" : "Show" }}
+                          </CButton>
+                        </td>
+                      </template>
+                      <template #details="{ item }">
+                        <CCollapse
+                          :show="Boolean(item._toggled)"
+                          :duration="collapseDuration"
+                        >
+                          <CCardBody>
+                            <CMedia :aside-image-props="{ height: 102 }">
+                              <h4>
+                                {{ item.username }}
+                              </h4>
+                              <p class="text-muted">
+                                User since: {{ item.registered }}
+                              </p>
+                              <CButton size="sm" color="info" class="">
+                                User Settings
+                              </CButton>
+                              <CButton size="sm" color="danger" class="ml-1">
+                                Delete
+                              </CButton>
+                            </CMedia>
+                          </CCardBody>
+                        </CCollapse>
+                      </template>
+                    </CDataTable>
+                  </CCardBody>
+                </CCollapse>
+              </CCard>
+            </CCol>
+          </CCardBody>
         </CCard>
       </CCol>
     </CRow>
-    <CButtonGroup
-      class="align-items-center mb-2 col-md-4 order-md-2 offset-lg-8"
-      size="sm"
-    >
-      <CButton color="success">Save (F11)</CButton>
-      <CButton color="danger">Clear (F3)</CButton>
-      <CButton color="warning">Print (F7)</CButton>
-    </CButtonGroup>
   </div>
 </template>
 
@@ -284,7 +355,6 @@ const items = [
   },
 ];
 
-
 const fields = [
   { key: "issusNo", _style: "min-width:150px" },
   { key: "orderNo", _style: "min-width:150px" },
@@ -316,6 +386,7 @@ export default {
       collapseDuration: 0,
       show: true,
       isCollapsed: true,
+      isCollapsed1: true,
     };
   },
   methods: {
