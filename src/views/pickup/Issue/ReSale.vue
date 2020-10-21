@@ -35,7 +35,7 @@
                 />
               </CCol>
               <CCol sm="2" style="padding-top: 12px">
-                <CButton block size="sm" color="kp-blue" class="mt-4"
+                <CButton block size="sm" color="primary-50" class="mt-4"
                   >Recipient (F8)</CButton>
               </CCol>
             </CRow>
